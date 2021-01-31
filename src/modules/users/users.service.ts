@@ -1,4 +1,4 @@
-import { UnprocessableEntityException, Injectable, Injectable } from '@nestjs/common';
+import { UnprocessableEntityException, Injectable } from '@nestjs/common';
 import { compare } from 'bcrypt';
 
 import { RegisterRequest } from '../../request';
@@ -10,5 +10,10 @@ import { UserRepository } from '../users/users.repository';
 @Injectable()
 export class UsersService
 {
-    
+    private readonly users: UserRepository;
+
+    public constructor(users: UserRepository)
+    {
+        this.users = users;
+    }
 }

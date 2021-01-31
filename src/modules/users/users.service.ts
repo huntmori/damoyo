@@ -16,4 +16,9 @@ export class UsersService
     {
         this.users = users;
     }
+
+    public async validateCredentials (user: User, password: string): Promise<boolean>
+    {
+        return compare(password, user.password);
+    }
 }

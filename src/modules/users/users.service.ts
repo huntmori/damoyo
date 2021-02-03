@@ -22,6 +22,7 @@ export class UsersService
         return compare(password, user.password);
     }
     //commit test2
+    // github contributions test
     public async createdUserFromRequest(request: RegisterRequest): Promise<User>
     {
         const { username, password } = request;

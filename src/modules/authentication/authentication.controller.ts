@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
-import { LoginRequest, RegisterRequest } from '../../request';
+import { LoginRequest, RefreshRequest, RegisterRequest } from '../../request';
 import { User } from '../../models/user.model';
 import { UsersService } from '../users/users.service';
 import { TokenService } from './tokens.service';
@@ -64,6 +64,19 @@ export class AuthenticationController
         return {
             status: 'success',
             data: payload,
+        };
+    }
+
+    @Post('/refresh')
+    public async refresh(@Body() body: RefreshRequest)
+    {
+        const { user, token } = await this.tokens.createAccessTokenFromRefreshToken(body.refresh_token);
+
+        const payload = this.buildResponsePayload(user, token);
+
+        return {
+            status: 'success',
+            data: payload
         };
     }
 

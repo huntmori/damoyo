@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { hash } from 'bcrypt';
 import { col, fn, where } from 'sequelize';
-import { User } from '../../models';
+import { User } from '../../models/user.model';
 
 @Injectable()
 export class UserRepository
